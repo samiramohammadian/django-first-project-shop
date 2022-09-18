@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from cart.models import Carts
+from cart.models import Carts, Item
 
 
 class CartSerializer(serializers.ModelSerializer):
@@ -14,4 +14,20 @@ class CartSerializer(serializers.ModelSerializer):
         ]
         read_only_fields = [
             'user',
+        ]
+
+
+class ItemSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Item
+        fields = [
+            "id",
+            "cart",
+            "product",
+            "price",
+            "count",
+        ]
+        read_only_fields = [
+            "price",
         ]
