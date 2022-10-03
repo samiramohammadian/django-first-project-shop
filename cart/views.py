@@ -19,7 +19,7 @@ class CartView(ModelViewSet):
         if self.request.method == "GET":
             return user_carts
         else:
-            return user_carts.filter(purchase_date=None)
+            return user_carts.filter(purchase_date__isnull=True)
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
@@ -39,7 +39,11 @@ class ItemView(ModelViewSet):
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        return Item.objects.filter(cart__user=self.request.user)
+        item_cart = Item.objects.filter(cart__user=self.request.user)
+        if self.request.method == "GET":
+            return item_cart
+        else:
+            return item_cart.filter(cart__purchase_date__isnull=True)
 
     @action(methods=["POST"], detail=True)
     def increase_count(self, request, pk):
