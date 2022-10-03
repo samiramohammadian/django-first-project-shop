@@ -5,6 +5,8 @@ from rest_framework.viewsets import ModelViewSet, ReadOnlyModelViewSet
 from rest_framework.permissions import IsAuthenticated, AllowAny, IsAdminUser, IsAuthenticatedOrReadOnly
 from rest_framework.decorators import action
 from rest_framework.response import Response
+
+from cart.filters import CartPublicFilter
 from cart.models import Carts, Item
 from cart.serializers import CartSerializer, ItemSerializer
 
@@ -13,6 +15,7 @@ class CartView(ModelViewSet):
     queryset = Carts.objects.all()
     serializer_class = CartSerializer
     permission_classes = [IsAuthenticated]
+    filterset_class = CartPublicFilter
 
     def get_queryset(self):
         user_carts = Carts.objects.filter(user=self.request.user)

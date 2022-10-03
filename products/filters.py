@@ -5,6 +5,8 @@ from products.models import Product
 class ProductPublicFilter(django_filters.FilterSet):
     class Meta:
         model = Product
-        fields = [
-            "category",
-        ]
+        fields = {
+            'price': ['gt', 'lt'],
+            'category': ['exact']
+        }
+

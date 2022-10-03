@@ -24,6 +24,7 @@ class ProductView(ReadOnlyModelViewSet):
     permission_classes = [AllowAny]
     filterset_class = ProductPublicFilter
 
+
 class AdminProductView(ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
