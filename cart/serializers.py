@@ -8,6 +8,7 @@ class CartSerializer(serializers.ModelSerializer):
         model = Carts
         fields = [
             "id",
+            "purchase_date",
             "user",
             "purchase_created",
             "purchase_modified",

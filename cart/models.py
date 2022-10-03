@@ -5,13 +5,13 @@ from products.models import Product
 
 
 class Carts(models.Model):
-    #purchase_date = models.DateTimeField()
+    purchase_date = models.DateTimeField(null=True, blank=True, default=None)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     purchase_created = models.DateTimeField(auto_now_add=True)
     purchase_modified = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f"{self.user}, {self.purchase_modified}, {self.purchase_created}"
+        return f"{self.user}- {self.id}"
 
 
 class Item(models.Model):

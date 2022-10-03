@@ -13,6 +13,9 @@ class CartAdmin(admin.ModelAdmin):
         "purchase_created",
         "purchase_modified",
     ]
+    list_filter = [
+        "purchase_date",
+    ]
 
 
 @admin.register(Item)
