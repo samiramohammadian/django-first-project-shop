@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'products',
     'cart',
     'django_filters',
+    'wallet',
+
 
 ]
 
